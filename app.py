@@ -73,8 +73,35 @@ def refresh():
     return redirect(url_for("index"))
 
 
+@app.errorhandler(429)
+def too_many_requests(error):
+    return (
+        render_template(
+            "429.html",
+            message=getattr(error, "description", "Please wait before refreshing again."),
+            retry_after=REFRESH_COOLDOWN_SECONDS,
+        ),
+        429,
+    )
+
+
+@app.errorhandler(500)
+def internal_server_error(_error):
+    return (
+        render_template(
+            "500.html",
+            message="Something went wrong while loading data. Please try again shortly.",
+        ),
+        500,
+    )
+
+
 if __name__ == "__main__":
     create_database()
-    fetch_and_save_wait_times()
+    try:
+        fetch_and_save_wait_times()
+    except Exception as error:
+        # Keep startup resilient if upstream data temporarily fails.
+        print(f"Startup fetch failed: {error}")
     # Default to safe settings; enable debug only when explicitly requested.
     app.run(debug=os.getenv("FLASK_DEBUG", "0") == "1")

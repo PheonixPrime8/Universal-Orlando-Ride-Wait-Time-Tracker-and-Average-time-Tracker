@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Too Many Requests</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<h1>Hold on a sec</h1>
+
+<nav>
+    <a href="/">Current Wait Times</a>
+    <a href="/averages">Average Wait Times</a>
+    <a href="/refresh">Refresh Live Data</a>
+</nav>
+
+<p>{{ message }}</p>
+<p>Try again in about {{ retry_after }} seconds.</p>
+
+<footer>
+    Powered by <a href="https://queue-times.com/en-US">Queue-Times.com</a>
+</footer>
+</body>
+</html>
