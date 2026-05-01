@@ -1,0 +1,137 @@
+/* ===== Global Styling ===== */
+body {
+    font-family: Arial, sans-serif;
+    background: #0b1f3a; /* deep navy */
+    margin: 0;
+    padding: 20px;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+    color: #f5c542; /* gold */
+}
+
+/* ===== Navigation ===== */
+nav {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+nav a {
+    display: inline-block;
+    margin: 8px;
+    padding: 10px 16px;
+    background: #1e3a5f;
+    color: #f5c542;
+    text-decoration: none;
+    border-radius: 8px;
+    border: 1px solid #f5c542;
+    transition: 0.2s;
+}
+
+nav a:hover {
+    background: #f5c542;
+    color: #0b1f3a;
+}
+
+/* ===== Table ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #112b4a;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+th, td {
+    padding: 12px;
+    border-bottom: 1px solid #1e3a5f;
+    text-align: left;
+}
+
+th {
+    background: #1e3a5f;
+    color: #f5c542;
+}
+
+tr:nth-child(even) {
+    background: #0f2744;
+}
+
+tr:hover {
+    background: #183a63;
+}
+
+/* ===== Park Logos ===== */
+.park-logo-cell {
+    padding-left: 90px;
+    position: relative;
+    font-weight: bold;
+}
+
+.park-logo-cell::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 70px;
+    height: 70px;
+    background-size: contain;
+    background-repeat: no-repeat;
+}
+
+/* Logos */
+.universal-studios-florida::before {
+    background-image: url("/static/logos/universal-studios-florida.png");
+}
+
+.islands-of-adventure::before {
+    background-image: url("/static/logos/islands-of-adventure.jpg");
+}
+
+.epic-universe::before {
+    background-image: url("/static/logos/epic-universe.png");
+}
+
+/* ===== Wait Time Colors (Universal Style) ===== */
+.wait-low {
+    color: #4cd964; /* soft green */
+    font-weight: bold;
+}
+
+.wait-medium {
+    color: #f5c542; /* gold */
+    font-weight: bold;
+}
+
+.wait-high {
+    color: #ff4d4d; /* red */
+    font-weight: bold;
+}
+
+/* ===== Status Badges ===== */
+.status-open {
+    background: #1e5f3a;
+    color: #4cd964;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+.status-closed {
+    background: #5f1e1e;
+    color: #ff4d4d;
+    padding: 6px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* ===== Footer ===== */
+footer {
+    margin-top: 25px;
+    text-align: center;
+    font-size: 14px;
+    color: #ccc;
+}

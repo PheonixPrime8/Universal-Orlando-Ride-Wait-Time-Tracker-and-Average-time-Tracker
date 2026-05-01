@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Universal Orlando Wait Tracker</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>Universal Orlando Wait Tracker</h1>
+
+<nav>
+    <a href="/">Current Wait Times</a>
+    <a href="/averages">Average Wait Times</a>
+    <a href="/refresh">Refresh Live Data</a>
+</nav>
+
+<table>
+    <tr>
+        <th>Park</th>
+        <th>Land</th>
+        <th>Ride</th>
+        <th>Wait</th>
+        <th>Status</th>
+        <th>Recorded At</th>
+    </tr>
+
+    {% for ride in rides %}
+    <tr>
+        <td class="park-logo-cell {{ ride[0]|lower|replace(' ', '-') }}">
+            {{ ride[0] }}
+        </td>
+        <td>{{ ride[1] }}</td>
+        <td>{{ ride[2] }}</td>
+        <td>
+            {% if ride[3] >= 60 %}
+                <span class="wait-high">{{ ride[3] }} min</span>
+            {% elif ride[3] >= 30 %}
+                <span class="wait-medium">{{ ride[3] }} min</span>
+            {% else %}
+                <span class="wait-low">{{ ride[3] }} min</span>
+            {% endif %}
+        </td>
+        <td>
+            {% if ride[4] == 1 %}
+                Open
+            {% else %}
+                Closed
+            {% endif %}
+        </td>
+        <td>{{ ride[5] }}</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<footer>
+    Powered by <a href="https://queue-times.com/en-US">Queue-Times.com</a>
+</footer>
+
+</body>
+</html>

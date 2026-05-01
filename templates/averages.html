@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Average Wait Times</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<h1>Average Wait Times</h1>
+
+<nav>
+    <a href="/">Current Wait Times</a>
+    <a href="/averages">Average Wait Times</a>
+    <a href="/refresh">Refresh Live Data</a>
+</nav>
+
+<table>
+    <tr>
+        <th>Park</th>
+        <th>Ride</th>
+        <th>Average Wait</th>
+    </tr>
+
+    {% for avg in averages %}
+    <tr>
+        <td>{{ avg[0] }}</td>
+        <td>{{ avg[1] }}</td>
+        <td>{{ avg[2] }} min</td>
+    </tr>
+    {% endfor %}
+</table>
+
+<footer>
+    Powered by <a href="https://queue-times.com/en-US">Queue-Times.com</a>
+</footer>
+
+</body>
+</html>

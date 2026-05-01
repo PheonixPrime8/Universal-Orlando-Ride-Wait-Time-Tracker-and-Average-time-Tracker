@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+wait_times.db
+.venv/
