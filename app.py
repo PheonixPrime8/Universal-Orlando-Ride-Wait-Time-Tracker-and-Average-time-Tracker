@@ -1,8 +1,12 @@
-from flask import Flask, render_template, redirect, url_for
+import os
+import time
+from flask import Flask, abort, render_template, redirect, url_for
 from database import create_database, get_connection
 from fetch_wait_times import fetch_and_save_wait_times
 
 app = Flask(__name__)
+REFRESH_COOLDOWN_SECONDS = 60
+_last_refresh_ts = 0.0
 
 
 @app.route("/")
@@ -59,11 +63,18 @@ def averages():
 
 @app.route("/refresh")
 def refresh():
+    global _last_refresh_ts
+    now = time.time()
+    if now - _last_refresh_ts < REFRESH_COOLDOWN_SECONDS:
+        abort(429, description="Refresh is rate-limited. Please wait a minute.")
+
     fetch_and_save_wait_times()
+    _last_refresh_ts = now
     return redirect(url_for("index"))
 
 
 if __name__ == "__main__":
     create_database()
     fetch_and_save_wait_times()
-    app.run(debug=True)
+    # Default to safe settings; enable debug only when explicitly requested.
+    app.run(debug=os.getenv("FLASK_DEBUG", "0") == "1")
