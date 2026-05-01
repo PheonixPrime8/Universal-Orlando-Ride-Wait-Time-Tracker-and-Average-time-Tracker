@@ -1,6 +1,5 @@
 import sqlite3
-
-DB_NAME = "wait_times.db"
+from config import DB_NAME
 
 
 def get_connection():

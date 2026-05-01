@@ -12,6 +12,13 @@ h1 {
     color: #f5c542; /* gold */
 }
 
+.last-updated {
+    text-align: center;
+    margin-top: -6px;
+    margin-bottom: 18px;
+    color: #d6d6d6;
+}
+
 /* ===== Navigation ===== */
 nav {
     text-align: center;

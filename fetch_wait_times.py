@@ -1,6 +1,10 @@
 import requests
 from datetime import datetime
+import logging
 from database import get_connection
+from config import REQUEST_TIMEOUT_SECONDS
+
+LOGGER = logging.getLogger(__name__)
 
 PARKS = {
     "Islands of Adventure": 64,
@@ -18,7 +22,7 @@ def fetch_and_save_wait_times():
             url = f"https://queue-times.com/parks/{park_id}/queue_times.json"
 
             try:
-                response = requests.get(url, timeout=10)
+                response = requests.get(url, timeout=REQUEST_TIMEOUT_SECONDS)
                 response.raise_for_status()
                 data = response.json()
 
@@ -50,7 +54,7 @@ def fetch_and_save_wait_times():
                         VALUES (?, ?, ?, ?)
                         """, (ride_id, wait_time, is_open, timestamp))
 
-                print(f"Saved wait times for {park_name}")
+                LOGGER.info("Saved wait times for %s", park_name)
 
             except (requests.RequestException, ValueError, TypeError, KeyError) as error:
-                print(f"Error fetching {park_name}: {error}")
+                LOGGER.warning("Error fetching %s: %s", park_name, error)

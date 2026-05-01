@@ -43,3 +43,13 @@ Flask web app that pulls live ride wait times for all three Universal Orlando pa
 
 - Debug mode is off by default; set `FLASK_DEBUG=1` to enable it locally.
 - Local database files are intentionally ignored in git.
+- Automatic background refresh runs every 10 minutes by default.
+
+## Environment Variables
+
+- `FLASK_DEBUG` (default: `0`)
+- `PORT` (default: `5000`)
+- `DB_NAME` (default: `wait_times.db`)
+- `REFRESH_COOLDOWN_SECONDS` (default: `60`)
+- `AUTO_REFRESH_INTERVAL_SECONDS` (default: `600`)
+- `REQUEST_TIMEOUT_SECONDS` (default: `10`)
