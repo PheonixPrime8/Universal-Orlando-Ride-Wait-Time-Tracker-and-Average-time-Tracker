@@ -1,0 +1,13 @@
+universal-orlando-wait-tracker/
+│
+├── app.py
+├── database.py
+├── fetch_wait_times.py
+├── requirements.txt
+│
+├── templates/
+│   ├── index.html
+│   └── averages.html
+│
+└── static/
+    └── style.css
